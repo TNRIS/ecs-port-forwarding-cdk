@@ -14,14 +14,16 @@ export class ecsStack extends cdk.Stack {
 
         // Create a VPC with public subnets only and 2 max availability zones
         const vpc = ec2.Vpc.fromLookup(this, "tnris-vpc", {
-            vpcId: "vpc-ce6136aa",
+            // vpcId: "vpc-ce6136aa",
+            vpcId: "vpc-035074364f1bf3afb",
         });
 
         // Define a security group for your Fargate service
         const fargateSG = ec2.SecurityGroup.fromLookupById(
             this,
             "TnrisBastionHostSecGroup",
-            "sg-073e3d6ecc46a137c"
+            // "sg-073e3d6ecc46a137c"
+            "sg-0f0acbc81a7cbb177"
         );
 
         // Create an ECS Cluster named "bastion-host-cluster"
@@ -31,9 +33,9 @@ export class ecsStack extends cdk.Stack {
         });
 
         // Build and push Docker image to ECR
-        const appImageAsset = new DockerImageAsset(this, "MyAppImage", {
-            directory: "./lib/docker",
-        });
+        // const appImageAsset = new DockerImageAsset(this, "MyAppImage", {
+        //     directory: "./lib/docker",
+        // });
 
         // Define the execution role for the ECS task
         const executionRole = new iam.Role(this, "MyExecutionRole", {
@@ -54,7 +56,9 @@ export class ecsStack extends cdk.Stack {
 
         // Add a container to the task definition with the specified image
         taskDefinition.addContainer("web", {
-            image: ecs.ContainerImage.fromRegistry(appImageAsset.imageUri),
+            // image: ecs.ContainerImage.fromRegistry(appImageAsset.imageUri),
+            // image: ecs.ContainerImage.fromRegistry("public.ecr.aws/amazonlinux/amazonlinux:2023"),
+            image: ecs.ContainerImage.fromRegistry("amazonlinux:2023"),
             memoryLimitMiB: 512,
             cpu: 256,
         });
@@ -149,9 +153,9 @@ export class ecsStack extends cdk.Stack {
         // });
 
         // Grant ECR repository permissions for the task execution role
-        appImageAsset.repository.grantPullPush(
-            appService.taskDefinition.executionRole!
-        );
+        // appImageAsset.repository.grantPullPush(
+        //     appService.taskDefinition.executionRole!
+        // );
 
         const taskExecutionRole = appService.taskDefinition.executionRole!;
 
@@ -196,12 +200,12 @@ export class ecsStack extends cdk.Stack {
         //     }
         // );
 
-        const DBNAME = "mydatabase"; // Replace with your desired database name
-        const MASTER_USERNAME = "admin"; // Replace with your desired master username
-        const MASTER_PASSWORD = "MyPassword123"; // Replace with your desired password
-        const NODE_TYPE = "dc2.large"; // Default smallest and cheapest node type for Redshift Cluster
-        const NO_OF_NODES = 1; // Default Single-node, change to 2 for multi-node for Redshift Cluster
-        const PORT = 5439; // Default port for Redshift Cluster
+        // const DBNAME = "mydatabase"; // Replace with your desired database name
+        // const MASTER_USERNAME = "admin"; // Replace with your desired master username
+        // const MASTER_PASSWORD = "MyPassword123"; // Replace with your desired password
+        // const NODE_TYPE = "dc2.large"; // Default smallest and cheapest node type for Redshift Cluster
+        // const NO_OF_NODES = 1; // Default Single-node, change to 2 for multi-node for Redshift Cluster
+        // const PORT = 5439; // Default port for Redshift Cluster
 
         // Add inbound rule to allow traffic from fargate SG to Redshift SG
         // redshiftSG.addIngressRule(
