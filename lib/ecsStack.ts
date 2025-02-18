@@ -14,16 +14,14 @@ export class ecsStack extends cdk.Stack {
 
         // Create a VPC with public subnets only and 2 max availability zones
         const vpc = ec2.Vpc.fromLookup(this, "tnris-vpc", {
-            // vpcId: "vpc-ce6136aa",
-            vpcId: "vpc-035074364f1bf3afb",
+            vpcId: "vpc-ce6136aa",
         });
 
         // Define a security group for your Fargate service
         const fargateSG = ec2.SecurityGroup.fromLookupById(
             this,
             "TnrisBastionHostSecGroup",
-            // "sg-073e3d6ecc46a137c"
-            "sg-0f0acbc81a7cbb177"
+            "sg-073e3d6ecc46a137c"
         );
 
         // Create an ECS Cluster named "bastion-host-cluster"
