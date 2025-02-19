@@ -59,6 +59,12 @@ export class ecsStack extends cdk.Stack {
             image: ecs.ContainerImage.fromRegistry("amazonlinux:2023"),
             memoryLimitMiB: 512,
             cpu: 256,
+            entryPoint: ["python3", "-m", "http.server", "8080"],
+            logging: new ecs.AwsLogDriver({
+                // logGroup: new logs.LogGroup(this, 'MyLogGroup'),
+                streamPrefix: "web",
+                logRetention: logs.RetentionDays.ONE_DAY,
+            }),
         });
 
         // Create a new Fargate service with the image from ECR and specify the service name and desired number of tasks
@@ -238,10 +244,10 @@ export class ecsStack extends cdk.Stack {
         // );
 
         // Output ECS Cluster ARN
-        new cdk.CfnOutput(this, "ECSClusterARN", {
-            value: cluster.clusterArn,
-            description: "ECS Cluster ARN",
-        });
+        // new cdk.CfnOutput(this, "ECSClusterARN", {
+        //     value: cluster.clusterArn,
+        //     description: "ECS Cluster ARN",
+        // });
 
         // Output Redshift Cluster Endpoint Address
         // new cdk.CfnOutput(this, "RedshiftClusterEndpoint", {
