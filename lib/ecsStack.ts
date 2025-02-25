@@ -13,21 +13,21 @@ export class ecsStack extends cdk.Stack {
         super(scope, id, props);
 
         // Create a VPC with public subnets only and 2 max availability zones
-        const vpc = ec2.Vpc.fromLookup(this, "tnris-vpc", {
+        const vpc = ec2.Vpc.fromLookup(this, "tnrisVpc", {
             vpcId: "vpc-ce6136aa",
         });
 
         // Define a security group for your Fargate service
         const fargateSG = ec2.SecurityGroup.fromLookupById(
             this,
-            "TnrisBastionHostSecGroup",
-            "sg-073e3d6ecc46a137c"
+            "GeneralStoreSecGroup",
+            "sg-fbd13083"
         );
 
         // Create an ECS Cluster named "bastion-host-cluster"
         const cluster = new ecs.Cluster(this, "BastionHostCluster", {
             vpc,
-            clusterName: "bastion-host-cluster",
+            clusterName: "general-store-bastion-host-cluster",
         });
 
         // Build and push Docker image to ECR
