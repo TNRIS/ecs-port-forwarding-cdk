@@ -23,3 +23,20 @@ new bastionHostEcsStack(app, "floodPipelineEcsStack", {
     securityGroupIds: ["sg-0ad23e749ed9017aa", "sg-0d8c2bc37a7fcc5e4"],
     prefix: "flood-pipeline-",
 });
+
+// new bastionHostEcsStack(app, "acaSandboxEcsStack", {
+//     vpcId: "vpc-072c5d454f0933740",
+//     securityGroupIds: [
+//         "sg-00695cfc74b4861a3",
+//         "sg-01458088b69ab81b4",
+//         "sg-0e9d027d4abee958d",
+//     ],
+//     prefix: "general-store-",
+//     env: {
+//         account: "050451380066",
+//         region: "us-east-2",
+//     },
+//     synthesizer: new cdk.DefaultStackSynthesizer({
+//         qualifier: "dir-59fds",
+//     }),
+// });

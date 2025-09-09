@@ -196,5 +196,84 @@
   "security-group:account=746466009731:region=us-east-1:securityGroupId=sg-0d8c2bc37a7fcc5e4": {
     "securityGroupId": "sg-0d8c2bc37a7fcc5e4",
     "allowAllOutbound": false
+  },
+  "vpc-provider:account=050451380066:filter.vpc-id=vpc-072c5d454f0933740:region=us-east-2:returnAsymmetricSubnets=true": {
+    "vpcId": "vpc-072c5d454f0933740",
+    "vpcCidrBlock": "100.70.3.0/24",
+    "ownerAccountId": "050451380066",
+    "availabilityZones": [],
+    "vpnGatewayId": "vgw-04d4ee78faa70e274",
+    "subnetGroups": [
+      {
+        "name": "Public",
+        "type": "Public",
+        "subnets": [
+          {
+            "subnetId": "subnet-04f1f4bbb98b08505",
+            "cidr": "100.66.25.224/28",
+            "availabilityZone": "us-east-2a",
+            "routeTableId": "rtb-03438d47e8018ac9d"
+          },
+          {
+            "subnetId": "subnet-023d44dedaba6be24",
+            "cidr": "100.66.25.240/28",
+            "availabilityZone": "us-east-2b",
+            "routeTableId": "rtb-03438d47e8018ac9d"
+          }
+        ]
+      },
+      {
+        "name": "Private",
+        "type": "Private",
+        "subnets": [
+          {
+            "subnetId": "subnet-0eb695d465a20b72c",
+            "cidr": "100.70.3.128/26",
+            "availabilityZone": "us-east-2a",
+            "routeTableId": "rtb-03c196644fe80e2cc"
+          },
+          {
+            "subnetId": "subnet-0b950e97f1b90d81c",
+            "cidr": "100.70.3.192/26",
+            "availabilityZone": "us-east-2b",
+            "routeTableId": "rtb-0fab1e79c023038e7"
+          }
+        ]
+      },
+      {
+        "name": "Isolated",
+        "type": "Isolated",
+        "subnets": [
+          {
+            "subnetId": "subnet-0ffdca53aff00d5fa",
+            "cidr": "100.70.3.0/26",
+            "availabilityZone": "us-east-2a",
+            "routeTableId": "rtb-050d0a4007e53d620"
+          },
+          {
+            "subnetId": "subnet-02827a18a69fb1cad",
+            "cidr": "100.70.3.64/26",
+            "availabilityZone": "us-east-2b",
+            "routeTableId": "rtb-0cc70c31ee616c524"
+          }
+        ]
+      }
+    ]
+  },
+  "security-group:account=050451380066:region=us-east-2:securityGroupId=sg-00695cfc74b4861a3": {
+    "securityGroupId": "sg-00695cfc74b4861a3",
+    "allowAllOutbound": false
+  },
+  "security-group:account=050451380066:region=us-east-2:securityGroupId=sg-016855faeb01fee28": {
+    "securityGroupId": "sg-016855faeb01fee28",
+    "allowAllOutbound": false
+  },
+  "security-group:account=050451380066:region=us-east-2:securityGroupId=sg-01458088b69ab81b4": {
+    "securityGroupId": "sg-01458088b69ab81b4",
+    "allowAllOutbound": false
+  },
+  "security-group:account=050451380066:region=us-east-2:securityGroupId=sg-0e9d027d4abee958d": {
+    "securityGroupId": "sg-0e9d027d4abee958d",
+    "allowAllOutbound": false
   }
 }

@@ -60,9 +60,15 @@ export class bastionHostEcsStack extends cdk.Stack {
             cpu: 256,
             entryPoint: ["python3", "-m", "http.server", "8080"],
             logging: new ecs.AwsLogDriver({
-                // logGroup: new logs.LogGroup(this, 'MyLogGroup'),
+                logGroup: new logs.LogGroup(
+                    this,
+                    props.prefix + "BastionHostLogGroup",
+                    {
+                        retention: logs.RetentionDays.ONE_DAY,
+                    }
+                ),
                 streamPrefix: props.prefix + "web",
-                logRetention: logs.RetentionDays.ONE_DAY,
+                // logRetention: logs.RetentionDays.ONE_DAY,
             }),
         });
 
